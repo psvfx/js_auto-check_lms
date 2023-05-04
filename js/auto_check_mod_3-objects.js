@@ -818,34 +818,70 @@
 
 // РОЗВ'ЯЗАННЯ-------------
 
-const keys = [];
-const values = [];
-const advert = {
-  service: "apt",
-};
-const apartment = Object.create(advert);
-apartment.descr = "Spacious apartment in the city center";
-apartment.rating = 4;
-apartment.price = 2153;
+// const keys = [];
+// const values = [];
+// const advert = {
+//   service: "apt",
+// };
+// const apartment = Object.create(advert);
+// apartment.descr = "Spacious apartment in the city center";
+// apartment.rating = 4;
+// apartment.price = 2153;
 
-for (const key in apartment) {
-  // Change code below this line
-
-  keys.push(key);
-  values.push(apartment[key]);
-
-  // Change code above this line
-}
+// for (const key in apartment) {
+//   if (apartment.hasOwnProperty(key)) {
+//     keys.push(key);
+//     values.push(apartment[key]);
+//   }
+// }
+// console.log(keys);
+// console.log(values);
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 12/41 ====
 // ==========================================================
 
-// ТЕОРІЯ------------------
+// ЗАДАЧА: ПІДРАХУНОК ВЛАСТИВОСТЕЙ
 
 // ЗАВДАННЯ----------------
 
+// Напиши функцію countProps(object), яка рахує і повертає кількість власних властивостей об'єкта в параметрі object. Використовуй змінну propCount для зберігання кількості властивостей об'єкта.
+
+// ТЕСТИ
+// Оголошена функція countProps(object)
+// Виклик countProps({}) повертає 0
+// Виклик countProps({ name: "Mango", age: 2 }) повертає 2
+// Виклик countProps({ mail: "poly@mail.com", isOnline: true, score: 500 }) повертає 3
+// Функція підраховує тільки власні властивості об'єкта
+
+// function countProps(object) {
+//   let propCount = 0;
+//   // Change code below this line
+
+//   // Change code above this line
+//   return propCount;
+// }
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// function countProps(object) {
+//   let propCount = 0;
+//
+//   const keys = Object.keys(object); // Створюємо масив властивостей методом Object.keys
+
+//   // Перебираємо власні властивості масиву keys циклом for of та підраховуємо кількість елементів масиву, що відповідає кількості ключей об'єкта (технічно рахуємо кількість переборів в циклі):
+
+//   for (const key of keys) {
+//     propCount += 1;
+//   }
+//   // Change code above this line
+//   console.log(propCount);
+//   return propCount;
+// }
+
+// countProps({});
+// countProps({ name: "Mango", age: 2 });
+// countProps({ mail: "poly@mail.com", isOnline: true, score: 500 });
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 13/41 ====
@@ -853,19 +889,118 @@ for (const key in apartment) {
 
 // ТЕОРІЯ------------------
 
+// Вбудований клас Object має кілька корисних методів для роботи з об'єктами. Перший з них - це Object.keys(obj), який приймає об'єкт і повертає масив ключів його власних властивостей. Якщо в об'єкті немає властивостей, метод поверне порожній масив.
+
+// const book = {
+//   title: "The Last Kingdom",
+//   author: "Bernard Cornwell",
+//   genres: ["historical prose", "adventure"],
+//   rating: 8.38,
+// };
+// const keys = Object.keys(book);
+// console.log(keys); // ['title', 'author', 'genres', 'rating']
+// Скомбінувавши результат Object.keys() і цикл for...of, можна зручно перебрати власні властивості об'єкта, не вдаючись до використання архаїчного циклу for...in з перевірками приналежності властивостей.
+
+// const book = {
+//   author: "Bernard Cornwell",
+//   genres: ["historical prose", "adventure"],
+//   rating: 8.38,
+// };
+// const keys = Object.keys(book);
+
+// for (const key of keys) {
+//   // Ключ
+//   console.log(key);
+//   // Значення властивості
+//   console.log(book[key]);
+// }
+// Ми перебираємо масив ключів об'єкта і на кожній ітерації отримуємо значення властивості з таким ключем.
+
 // ЗАВДАННЯ----------------
+
+// Перебери об'єкт apartment, використовуючи метод Object.keys() і цикл for...of. Запиши у змінну keys масив ключів власних властивостей об'єкта apartment, і додай в масив values всі значення його властивостей.
+
+// ТЕСТИ
+// Оголошена змінна apartment.
+// Значення змінної apartment - це об'єкт.
+// Оголошена змінна keys.
+// Значення змінної keys - це масив ["descr", "rating", "price"].
+// Значення змінної keys отримане за допомогою методу Object.keys().
+// Оголошена змінна values.
+// Значення змінної values - це масив ["Spacious apartment in the city center", 4, 2153].
+// Значення змінної values отримане за допомогою циклу for...of.
+
+// const apartment = {
+//   descr: "Spacious apartment in the city center",
+//   rating: 4,
+//   price: 2153,
+// };
+// const values = [];
+// // Change code below this line
+// const keys = apartment;
 
 // РОЗВ'ЯЗАННЯ-------------
 
+// const apartment = {
+//   descr: "Spacious apartment in the city center",
+//   rating: 4,
+//   price: 2153,
+// };
+// const values = [];
+// // Change code below this line
+// const keys = Object.keys(apartment);
+// console.log(keys);
+// for (const key of keys) {
+//   values.push(apartment[key]);
+// }
+// console.log(values);
 // ==========================================================
 //             ==== ЗАВДАННЯ 14/41 ====
 // ==========================================================
 
-// ТЕОРІЯ------------------
+// ЗАДАЧА. ПІДРАХУНОК ВЛАСТИВОСТЕЙ 2.0
 
 // ЗАВДАННЯ----------------
 
+// Виконай рефакторинг функції countProps(object), використовуючи метод Object.keys() і, можливо, але не обов'язково, цикл for...of.
+
+// ТЕСТИ
+// Оголошена функція countProps(object)
+// Виклик countProps({}) повертає 0
+// Виклик countProps({ name: "Mango", age: 2 }) повертає 2
+// Виклик countProps({ mail: "poly@mail.com", isOnline: true, score: 500 }) повертає 3
+// Функція підраховує тільки власні властивості об'єкта
+// Функція використовує метод Object.keys() і, можливо, цикл for...of
+
+// function countProps(object) {
+//   // Change code below this line
+//   let propCount = 0;
+
+//   for (const key in object) {
+//     if (object.hasOwnProperty(key)) {
+//       propCount += 1;
+//     }
+//   }
+
+//   return propCount;
+//   // Change code above this line
+// }
+
 // РОЗВ'ЯЗАННЯ-------------
+
+function countProps(object) {
+  // Change code below this line
+  let propCount = 0;
+
+  for (const key in object) {
+    if (object.hasOwnProperty(key)) {
+      propCount += 1;
+    }
+  }
+
+  return propCount;
+  // Change code above this line
+}
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 15/41 ====
