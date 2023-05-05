@@ -1839,7 +1839,57 @@
 
 // ЗАВДАННЯ----------------
 
+// Функція calculateMeanTemperature(forecast) приймає один параметр forecast - об'єкт температур на два дні наступного формату.
+
+// {
+//   today: { low: 10, high: 20 },
+//   tomorrow: { low: 20, high: 30 }
+// }
+// Заміни оголошення змінних todayLow, todayHigh, tomorrowLow і tomorrowHigh однією операцією деструктуризації властивостей об'єкта forecast.
+
+// Оголошена функція calculateMeanTemperature(forecast)
+// В тілі функції використовується деструктуризація об'єкта
+// В тілі функції оголошена змінна todayHigh за допомогою деструктуризації
+// В тілі функції оголошена змінна todayLow за допомогою деструктуризації
+// В тілі функції оголошена змінна tomorrowLow за допомогою деструктуризації
+// В тілі функції оголошена змінна tomorrowHigh за допомогою деструктуризації
+// Виклик calculateMeanTemperature({ today: {low: 28, high: 32}, tomorrow: {low: 25, high: 29} }) повертає 28.5
+// Виклик calculateMeanTemperature({ today: {low: 37, high: 40}, tomorrow: {low: 33, high: 38} }) повертає 37
+
+// // Change code below this line
+// function calculateMeanTemperature(forecast) {
+//   const todayLow = forecast.today.low;
+//   const todayHigh = forecast.today.high;
+//   const tomorrowLow = forecast.tomorrow.low;
+//   const tomorrowHigh = forecast.tomorrow.high;
+
+//   // Change code above this line
+//   return (todayLow + todayHigh + tomorrowLow + tomorrowHigh) / 4;
+// }
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// // Change code below this line
+// function calculateMeanTemperature(forecast) {
+//   const {
+//     today: { low: todayLow, high: todayHigh },
+//     tomorrow: { low: tomorrowLow, high: tomorrowHigh },
+//   } = forecast;
+
+//   // Change code above this line
+//     console.log((todayLow + todayHigh + tomorrowLow + tomorrowHigh) / 4);
+
+//   return (todayLow + todayHigh + tomorrowLow + tomorrowHigh) / 4;
+// }
+
+// calculateMeanTemperature({
+//   today: { low: 28, high: 32 },
+//   tomorrow: { low: 25, high: 29 },
+// });
+// calculateMeanTemperature({
+//   today: { low: 37, high: 40 },
+//   tomorrow: { low: 33, high: 38 },
+// });
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 27/41 ====
@@ -1847,9 +1897,55 @@
 
 // ТЕОРІЯ------------------
 
+// Синтаксис ... (spread) дозволяє розподілити колекцію елементів (масив, рядок або об'єкт) в місце, в якому очікується набір окремих значень. Звичайно, існують деякі обмеження, наприклад, не можна розподілити масив в об'єкт і навпаки.
+
+// Можна навести аналогію з ящиком яблук. Поставивши ящик на підлогу, не виймаючи з нього яблука, отримаємо аналог масиву значень. Якщо висипати яблука з ящика на підлогу, відбудеться розподіл - набір окремих значень.
+
+// Відмінність лише одна - в JavaScript розподіл не змінює оригінальну колекцію, тобто створюється копія кожного елемента. Після розподілу залишиться і ящик повний яблук, і копія кожного яблука на підлозі.
+
+// Наприклад, метод Math.max (аргументи) шукає і повертає найбільший з аргументів (чисел), тобто очікує не масив значень, а довільну кількість аргументів.
+
+// const temps = [14, -4, 25, 8, 11];
+
+// // В консолі буде масив
+// console.log(temps);
+// // ❌ Так не спрацює, тому що передаємо цілий масив
+// console.log(Math.max(temps)); // NaN
+
+// // В консолі буде набір окремих чисел
+// console.log(...temps);
+// // ✅ Розподілимо колекцію елементів у якості окремих аргументів
+// console.log(Math.max(...temps)); // 25
+// Тобто запис Math.max (... [14, -4, 25, 8, 11]), після інтерпретації перетворюється у Math.max (14, -4, 25, 8, 11) - синтаксис ... повертає розпакований масив, тобто розподіляє його елементи у якості окремих аргументів.
+
 // ЗАВДАННЯ----------------
 
+// У змінній scores зберігається масив результатів тестування. Використовуючи розподіл і методи Math.max() і Math.min(), доповни код таким чином, щоб у змінній bestScore був найвищий бал, а у worstScore - найнижчий.
+
+// ТЕСТИ
+// Оголошена змінна scores
+// Значення змінної scores - це масив [89, 64, 42, 17, 93, 51, 26]
+// Оголошена змінна bestScore
+// Значення змінної bestScore - це число 93
+// Оголошена змінна worstScore
+// Значення змінної worstScore - це число 17
+// Для передачі аргументів методу Math.max() використовується синтаксис ... на масиві scores
+// Для передачі аргументів методу Math.min() використовується синтаксис ... на масиві scores
+
+// const scores = [89, 64, 42, 17, 93, 51, 26];
+// // Change code below this line
+// const bestScore = scores;
+// const worstScore = scores;
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// const scores = [89, 64, 42, 17, 93, 51, 26];
+// // Change code below this line
+// const bestScore = Math.max(...scores);
+// const worstScore = Math.min(...scores);
+
+// console.log(bestScore);
+// console.log(worstScore);
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 28/41 ====
@@ -1857,9 +1953,71 @@
 
 // ТЕОРІЯ------------------
 
+// Операція .spread дозволяє створити копію масиву або «склеїти» довільну кількість масивів в один новий. Раніше для цього використовували методи slice() і concat(), але операція розподілу дозволяє зробити те саме у коротшій формі.
+
+// const temps = [14, -4, 25, 8, 11];
+
+// // Це точна, але незалежна копія масиву temps
+// const copyOfTemps = [...temps];
+// console.log(copyOfTemps); // [14, -4, 25, 8, 11]
+// В наведеному вище прикладі у нас є ящик яблук temps і ми хочемо створити його точну копію. Беремо порожній ящик і пересипаємо в нього яблука з вихідного ящика temps - розподіляємо його в іншу колекцію. За такої умови, ящик temps не зміниться, в ньому все ще будуть яблука, а в новому ящику - їх точні копії.
+
+// У наступному прикладі ми зсипаємо яблука з двох ящиків в один новий. Оригінальні ящики (масиви) не зміняться, а в новому будуть копії усіх їх яблук (елементів). Порядок розподілу важливий - він впливає на порядок елементів у новій колекції.
+
+// const lastWeekTemps = [14, 25, 11];
+// const currentWeekTemps = [23, 17, 18];
+// const allTemps = [...lastWeekTemps, ...currentWeekTemps];
+// console.log(allTemps); // [14, 25, 11, 23, 17, 18]
+
 // ЗАВДАННЯ----------------
 
+// У змінних firstGroupScores, secondGroupScores і thirdGroupScores зберігаються результати тестування окремих груп. Використовуючи розподіл, доповни код таким чином, щоб:
+
+// ТЕСТИ
+// У змінній allScores зберігався масив всіх результатів від першої до третьої групи.
+// У змінній bestScore був найвищий загальний бал.
+// У змінній worstScore був найнижчий загальний бал.
+// Оголошена змінна firstGroupScores
+// Значення змінної firstGroupScores - це масив [64, 42, 93]
+// Оголошена змінна secondGroupScores
+// Значення змінної secondGroupScores - це масив [89, 14, 51, 26]
+// Оголошена змінна thirdGroupScores
+// Значення змінної thirdGroupScores - це масив [29, 47, 18, 97, 81]
+// Оголошена змінна allScores.
+// Значення змінної allScores - це масив [64, 42, 93, 89, 14, 51, 26, 29, 47, 18, 97, 81]
+// Оголошена змінна bestScore
+// Значення змінної bestScore - це число 97
+// Оголошена змінна worstScore
+// Значення змінної worstScore - це число 14
+// Для присвоєння значення змінної allScores використовувався синтаксис ... для заповнення масиву
+// Для передачі аргументів методу Math.max() використовується синтаксис ... на масиві allScores
+// Для передачі аргументів методу Math.min() використовується синтаксис ... на масиві allScores
+
+// const firstGroupScores = [64, 42, 93];
+// const secondGroupScores = [89, 14, 51, 26];
+// const thirdGroupScores = [29, 47, 18, 97, 81];
+// // Change code below this line
+// const allScores = [];
+// const bestScore = allScores;
+// const worstScore = allScores;
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// const firstGroupScores = [64, 42, 93];
+// const secondGroupScores = [89, 14, 51, 26];
+// const thirdGroupScores = [29, 47, 18, 97, 81];
+// // Change code below this line
+// const allScores = [
+//   ...firstGroupScores,
+//   ...secondGroupScores,
+//   ...thirdGroupScores,
+// ];
+// const bestScore = Math.max(...allScores);
+// const worstScore = Math.min(...allScores);
+
+// console.log(allScores);
+// console.log(bestScore);
+// console.log(worstScore);
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 29/41 ====
@@ -1867,19 +2025,142 @@
 
 // ТЕОРІЯ------------------
 
+// Операція spread дозволяє розподілити властивості довільної кількості об'єктів в один новий.
+
+// const first = { propA: 5, propB: 10 };
+// const second = { propC: 15 };
+// const third = { ...first, ...second };
+// console.log(third); // { propA: 5, propB: 10, propC: 15 }
+// Порядок розподілу має значення. Імена властивостей об'єкта - унікальні, тому властивості об'єкта, що розподіляється, можуть перезаписати значення вже існуючої властивості, якщо їх імена збігаються.
+
+// const first = { propA: 5, propB: 10, propC: 50 };
+// const second = { propC: 15, propD: 20 };
+
+// const third = { ...first, ...second };
+// console.log(third); // { propA: 5, propB: 10, propC: 15, propD: 20 }
+
+// const fourth = { ...second, ...first };
+// console.log(fourth); // { propA: 5, propB: 10, propC: 50, propD: 20 }
+// Якби яблука в ящику мали наліпки з позначками, то в одному ящику не може бути двох яблук з однаковими позначками. Тому, пересипаючи другий ящик, усі яблука, позначки яких будуть збігатися з тими, що вже знаходяться у новому ящику, замінять існуючі.
+
+// Під час розподілу можна додавати властивості у довільне місце. Головне пам'ятати про унікальність імені властивості і про те, що її значення може бути перезаписане.
+
+// const first = { propA: 5, propB: 10, propC: 50 };
+// const second = { propC: 15 };
+
+// const third = { propB: 20, ...first, ...second };
+// console.log(third); // { propA: 5, propB: 10, propC: 15 }
+
+// const fourth = { ...first, ...second, propB: 20 };
+// console.log(fourth); // { propA: 5, propB: 20, propC: 15 }
+
+// const fifth = { ...first, propB: 20, ...second };
+// console.log(fifth); // { propA: 5, propB: 20, propC: 15 }
+
 // ЗАВДАННЯ----------------
 
+// В конструкторі можна створювати нові тести, для яких є налаштування за замовчуванням, які зберігаються у змінній defaultSettings. Під час створення тесту, усі або частину налаштувань можна перевизначити, вони зберігаються у змінній overrideSettings.
+
+// Для того щоб отримати фінальні налаштування тесту, необхідно взяти налаштування за замовчуванням і поверх них застосувати перевизначені налаштування. Доповни код таким чином, щоб у змінній finalSettings утворився об'єкт фінальних налаштувань тесту.
+
+// ТЕСТИ
+// Оголошена змінна defaultSettings
+// Значення змінної defaultSettings - це об'єкт
+// Оголошена змінна overrideSettings
+// Значення змінної overrideSettings - це об'єкт
+// Оголошена змінна finalSettings
+// Значення змінної finalSettings - це об'єкт
+// Значення властивості finalSettings.theme дорівнює "light"
+// Значення властивості finalSettings.public дорівнює "false"
+// Значення властивості finalSettings.withPassword дорівнює "true"
+// Значення властивості finalSettings.minNumberOfQuestions дорівнює 10
+// Значення властивості finalSettings.timePerQuestion дорівнює 30
+// Для присвоєння значення змінній finalSettings використовується синтаксис ...
+
+// const defaultSettings = {
+//   theme: "light",
+//   public: true,
+//   withPassword: false,
+//   minNumberOfQuestions: 10,
+//   timePerQuestion: 60,
+// };
+// const overrideSettings = {
+//   public: false,
+//   withPassword: true,
+//   timePerQuestion: 30,
+// };
+// // Change code below this line
+// const finalSettings = {};
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// const defaultSettings = {
+//   theme: "light",
+//   public: true,
+//   withPassword: false,
+//   minNumberOfQuestions: 10,
+//   timePerQuestion: 60,
+// };
+// const overrideSettings = {
+//   public: false,
+//   withPassword: true,
+//   timePerQuestion: 30,
+// };
+// // Change code below this line
+// const finalSettings = { ...defaultSettings, ...overrideSettings };
+
+// console.log(finalSettings);
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 30/41 ====
 // ==========================================================
 
-// ТЕОРІЯ------------------
+// ЗАДАЧА. КАРТКИ ЗАВДАНЬ
 
 // ЗАВДАННЯ----------------
 
+// Напиши функцію makeTask(data) яка приймає один параметр data - об'єкт з наступними властивостями.
+
+// text - текст завдання.
+// category - категорія завдання.
+// priority - пріоритет завдання.
+// Функція повинна створити і повернути новий об'єкт завдання, не змінюючи напряму параметр data. У новому об'єкті повинна бути властивість completed, значення якої зберігається в однойменній локальній змінній.
+
+// В параметрі data гарантовано буде тільки властивість text, а інші дві, category і priority, можуть бути відсутніми. Тоді, в новому об'єкті завдання, у властивостях category і priority повинні бути значення за замовчуванням, що зберігаються в однойменних локальних змінних.
+
+// Оголошена функція makeTask(data)
+// Виклик makeTask({}) повертає { category: "General", priority: "Normal", completed: false }
+// Виклик makeTask({ category: "Homemade", priority: "Low", text: "Take out the trash" }) повертає { category: "Homemade", priority: "Low", text: "Take out the trash", completed: false }
+// Виклик makeTask({ category: "Finance", text: "Take interest" }) повертає { category: "Finance", priority: "Normal", text: "Take interest", completed: false }
+// Виклик makeTask({ priority: "Low", text: "Choose shampoo" }) повертає { category: "General", priority: "Low", text: "Choose shampoo", completed: false }
+// Виклик makeTask({ text: "Buy bread" }) повертає { category: "General", priority: "Normal", text: "Buy bread", completed: false }
+
+// function makeTask(data) {
+//   const completed = false;
+//   const category = "General";
+//   const priority = "Normal";
+//   // Change code below this line
+
+//   // Change code above this line
+// }
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// function makeTask(data) {
+//   const completed = false;
+//   const category = "General";
+//   const priority = "Normal";
+//   // Change code below this line
+//   console.log({ completed, category, priority, ...data });
+//   return { completed, category, priority, ...data };
+//   // Change code above this line
+// }
+
+// makeTask({});
+// makeTask({ category: "Homemade", priority: "Low", text: "Take out the trash" });
+// makeTask({ category: "Finance", text: "Take interest" });
+// makeTask({ priority: "Low", text: "Choose shampoo" });
+// makeTask({ text: "Buy bread" });
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 31/41 ====
@@ -1887,9 +2168,66 @@
 
 // ТЕОРІЯ------------------
 
+// Операція ... (rest) дозволяє зібрати групу незалежних елементів у нову колекцію. Синтаксично - це близнюк операції розподілу, але відрізнити їх просто - розподіл - коли ... знаходиться у правій частині операції присвоювання, а збирання - коли ... знаходиться в її лівій частині.
+
+// Повернемось до аналогії з яблуками. Якщо на підлозі лежать яблука і у нас є порожній ящик, то операція rest дозволить «зібрати» яблука в ящик. Водночас, оригінальні яблука залишаться на підлозі, а в ящику буде копія кожного яблука.
+
+// Одна зі сфер застосування операції rest - це створення функцій, які можуть приймати будь-яку кількість аргументів.
+
+// // Як оголосити параметри функції таким чином,
+// // щоб можна було передати будь-яку кількість аргументів?
+// function multiply() {
+//   // ...
+// }
+
+// multiply(1, 2);
+// multiply(1, 2, 3);
+// multiply(1, 2, 3, 4);
+// Якщо прибрати увесь «синтаксичний шум» і подивитися на аргументи і параметри функції, то аргументи знаходяться у правій частині операції присвоювання, а параметри - у лівій, тому що значення аргументів присвоюються оголошеним параметрам. Отже, можна «зібрати» всі аргументи функції в один параметр, використовуючи операцію rest.
+
+// function multiply(...args) {
+//   console.log(args); // масив усіх аргументів
+// }
+
+// multiply(1, 2);
+// multiply(1, 2, 3);
+// multiply(1, 2, 3, 4);
+// Ім'я параметра може бути довільним. Найчастіше його називають args, restArgs або otherArgs - скорочено від arguments.
+
 // ЗАВДАННЯ----------------
 
+// Використовуючи операцію rest, доповни код функції add() таким чином, щоб вона приймала будь-яку кількість аргументів, рахувала і повертала їх суму.
+
+// Оголошена функція add
+// Функція add використовує параметр args
+// Для збирання аргументів у змінну args, у підписі функції використовується синтаксис ... (оператор rest)
+// Виклик add(15, 27) повертає 42
+// Виклик add(12, 4, 11, 48) повертає 75
+// Виклик add(32, 6, 13, 19, 8) повертає 78
+// Виклик add(74, 11, 62, 46, 12, 36) повертає 241
+
+// // Change code below this line
+// function add() {
+//   // Change code above this line
+// }
+
 // РОЗВ'ЯЗАННЯ-------------
+
+// function add(...args) {
+//   let sumArgs = 0;
+
+//   for (const arg of args) {
+//     sumArgs += arg;
+//   }
+
+//   console.log(sumArgs);
+//   return sumArgs;
+// }
+
+// add(15, 27);
+// add(12, 4, 11, 48);
+// add(32, 6, 13, 19, 8);
+// add(74, 11, 62, 46, 12, 36);
 
 // ==========================================================
 //             ==== ЗАВДАННЯ 32/41 ====
